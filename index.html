@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css"><title>Document</title>
 </head>
 <body>
+    <h1>Cotizador de Cortes</h1>
+    <hr>
+    <h3>Bienvenido al cotizador de cortes</h3>
+    <br>
+    <label for="">Nombre:</label>
+    <br>
+    <input type="text" id="nombre" placeholder="Ingrese su nombre">
+    <br>
+    <br>
+    <label for="">Material</label>
+    <br>
+    <select id="Material" onchange="actualizarPrecio()">
+                <option value="">Seleccione un material..</option>
+                <option id="TB" value="58351.59">Pino</option>
+                <option id="FF" value="30129.47">Fibro Facil</option>
+    </select>
+
+    <div class="mb-3">
+            <form>
+                <label for="alto">Largo (cm):</label>
+                <input class="form-control" type="number" id="alto" name="alto"><br><br>
+
+                <label for="ancho">Ancho (cm):</label>
+                <input class="form-control" type="number" id="ancho" name="ancho"><br><br>
+
+                <label for="cantidad">Cantidad:</label>
+                <input class="form-control" type="number" id="cantidad" name="alto"><br><br>
+
+                <label for="preciometromadera">Precio por m2 ($):</label>
+                <input class="form-control" type="number" id="preciometromadera" name="preciometromadera" readonly><br><br>
+            <br>
+            <button type="button" class="btn btn-outline-secondary" id="CALCULAR" onclick="calcularCosto()">CALCULAR</button>
+            </form>
+    </div>
+
+    <div id="Piedepagina">
+        <hr>
+        <h2>Costo total del corte: $<span id="costototalcorte">0.00</span></h2>
+        <hr>
+        </div>
+
     
+
+    <script src="/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>
