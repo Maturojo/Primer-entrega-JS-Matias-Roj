@@ -1,5 +1,14 @@
 const cortes = [];
 
+// Preguntar el nombre del cliente al cargar la página
+let nombreCliente = prompt("¡Bienvenido! ¿Cuál es tu nombre?");
+
+// Mostrar el nombre en el HTML si lo completó
+if (nombreCliente) {
+    document.getElementById('nombre').value = nombreCliente;
+}
+
+
 function calcularCosto() {
     const largo = parseFloat(document.getElementById('alto').value);
     const ancho = parseFloat(document.getElementById('ancho').value);
