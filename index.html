@@ -24,19 +24,21 @@
                 <option id="FF" value="30129.47">Fibro Facil</option>
     </select>
 
+    <br>
     <div class="mb-3">
             <form>
+                <br>
                 <label for="alto">Largo (cm):</label>
-                <input class="form-control" type="number" id="alto" name="alto"><br><br>
+                <input class="form-control-sm" type="number" id="alto" name="alto"><br><br>
 
                 <label for="ancho">Ancho (cm):</label>
-                <input class="form-control" type="number" id="ancho" name="ancho"><br><br>
+                <input class="form-control-sm" type="number" id="ancho" name="ancho"><br><br>
 
                 <label for="cantidad">Cantidad:</label>
-                <input class="form-control" type="number" id="cantidad" name="alto"><br><br>
+                <input class="form-control-sm" type="number" id="cantidad" name="alto"><br><br>
 
                 <label for="preciometromadera">Precio por m2 ($):</label>
-                <input class="form-control" type="number" id="preciometromadera" name="preciometromadera" readonly><br><br>
+                <input class="form-control-sm" type="number" id="preciometromadera" name="preciometromadera" readonly><br><br>
             <br>
             <button type="button" class="btn btn-outline-secondary" id="CALCULAR" onclick="calcularCosto()">CALCULAR</button>
             </form>
@@ -47,6 +49,12 @@
         <h2>Costo total del corte: $<span id="costototalcorte">0.00</span></h2>
         <hr>
         </div>
+
+        <div class="container mt-4">
+        <h4>Historial de cortes:</h4>
+        <ul id="listaCortes" class="list-group"></ul>
+        </div>
+
 
     
 

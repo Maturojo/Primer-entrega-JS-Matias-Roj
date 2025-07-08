@@ -6,7 +6,16 @@ let nombreCliente = prompt("¡Bienvenido! ¿Cuál es tu nombre?");
 // Mostrar el nombre en el HTML si lo completó
 if (nombreCliente) {
     document.getElementById('nombre').value = nombreCliente;
+
+
 }
+
+function actualizarPrecio() {
+    const material = document.getElementById('Material');
+    const precio = parseFloat(material.value) || 0;
+    document.getElementById('preciometromadera').value = precio;
+}
+
 
 
 function calcularCosto() {
@@ -38,4 +47,11 @@ function calcularCosto() {
 
     cortes.push(corte);
     console.log(cortes); // 🛠️ Para verlos en consola
+
+    const lista = document.getElementById('listaCortes');
+    const item = document.createElement('li');
+    item.className = 'list-group-item';
+    item.textContent = `${cantidad}x ${tipoMadera} de ${largo}cm x ${ancho}cm - $${total.toFixed(2)}`;
+    lista.appendChild(item);
+
 }
