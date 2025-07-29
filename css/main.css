@@ -1,12 +1,13 @@
- body {
+body {
             background-color: #f5f6fa;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 20px;
         }
 
         h1, h3, h4 {
             text-align: center;
             color: #2c3e50;
+            font-weight: 700;
         }
 
         hr {
@@ -14,26 +15,34 @@
         }
 
         label {
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .container {
-            max-width: 700px;
+            max-width: 750px;
             background: #ffffff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             margin-top: 20px;
         }
 
         .btn-outline-secondary {
             width: 100%;
             font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #2c3e50;
+            color: #fff;
         }
 
         #mensajeError {
             color: #e74c3c;
             margin-top: 10px;
+            font-size: 0.9rem;
         }
 
         #Piedepagina {
@@ -41,10 +50,32 @@
             background: #ecf0f1;
             padding: 15px;
             border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
         }
 
         #listaCortes li {
             background: #f1f2f6;
             margin-top: 5px;
-            border-radius: 5px;
+            border-radius: 6px;
+            padding: 8px 12px;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        #listaCortes li:hover {
+            transform: scale(1.02);
+            background: #dfe6e9;
+        }
+
+        #btnReset {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        #btnReset:hover {
+            background-color: #c0392b;
+            color: #fff;
         }

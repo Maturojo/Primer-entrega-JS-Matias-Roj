@@ -4,61 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css"><title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+    <title>Cotizador de Cortes</title>
 </head>
 <body>
-    <h1>Cotizador de Cortes</h1>
-    <hr>
-    <h3>Bienvenido al cotizador de cortes</h3>
-    <br>
-    <label for="">Nombre:</label>
-    <br>
-    <input type="text" id="nombre" placeholder="Ingrese su nombre">
-    <br>
-    <br>
-    <label for="">Material</label>
-    <br>
-    <select id="Material" onchange="actualizarPrecio()">
-                <option value="">Seleccione un material..</option>
-                <option id="TB" value="58351.59">Pino</option>
-                <option id="FF" value="30129.47">Fibro Facil</option>
-    </select>
+    <div class="container">
+        <h1>Cotizador de Cortes</h1>
+        <hr>
+        <h3>Bienvenido al cotizador de cortes</h3>
+        <br>
 
-    <br>
-    <div class="mb-3">
-            <form>
-                <br>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" class="form-control" placeholder="Ingrese su nombre">
+        <br>
+
+        <label for="Material">Material:</label>
+        <select id="Material" class="form-select" onchange="actualizarPrecio()">
+            <option value="">Seleccione un material...</option>
+            <option value="58351.59">Pino</option>
+            <option value="30129.47">Fibro Fácil</option>
+        </select>
+
+        <div class="mb-3 mt-3">
+            <form onsubmit="return false;">
                 <label for="alto">Largo (cm):</label>
-                <input class="form-control-sm" type="number" id="alto" name="alto"><br><br>
+                <input class="form-control" type="number" id="alto"><br>
 
                 <label for="ancho">Ancho (cm):</label>
-                <input class="form-control-sm" type="number" id="ancho" name="ancho"><br><br>
+                <input class="form-control" type="number" id="ancho"><br>
 
                 <label for="cantidad">Cantidad:</label>
-                <input class="form-control-sm" type="number" id="cantidad" name="alto"><br><br>
+                <input class="form-control" type="number" id="cantidad"><br>
 
-                <label for="preciometromadera">Precio por m2 ($):</label>
-                <input class="form-control-sm" type="number" id="preciometromadera" name="preciometromadera" readonly><br><br>
-            <br>
-            <button type="button" class="btn btn-outline-secondary" id="CALCULAR" onclick="calcularCosto()">CALCULAR</button>
+                <label for="preciometromadera">Precio por m² ($):</label>
+                <input class="form-control" type="number" id="preciometromadera" readonly><br>
+
+                <button type="button" class="btn btn-outline-secondary" onclick="calcularCosto()">CALCULAR</button>
+                <p id="mensajeError"></p>
             </form>
+        </div>
+
+        <div id="Piedepagina">
+            <h2>Costo total de todos los cortes: $<span id="costototalcorte">0.00</span></h2>
+        </div>
+
+        <div class="container mt-4 p-0">
+            <h4>Historial de cortes:</h4>
+            <ul id="listaCortes" class="list-group"></ul>
+            <button id="btnReset" class="btn btn-danger" onclick="resetCortes()">Reiniciar cortes</button>
+        </div>
     </div>
 
-    <div id="Piedepagina">
-        <hr>
-        <h2>Costo total del corte: $<span id="costototalcorte">0.00</span></h2>
-        <hr>
-        </div>
-
-        <div class="container mt-4">
-        <h4>Historial de cortes:</h4>
-        <ul id="listaCortes" class="list-group"></ul>
-        </div>
-
-
-    
-
-    <script src="/js/index.js"></script>
+    <script src="js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>
