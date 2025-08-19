@@ -41,10 +41,14 @@ function calcularCosto() {
     const total = area * precioPorMetro * cantidad;
 
     
-    cortes.push({ tipoMadera, largo, ancho, cantidad, precioPorMetro, total: total });
+    const id = Date.now();
+    const corte = { id, tipoMadera, largo, ancho, cantidad, precioPorMetro, total };
+    cortes.push(corte);
 
     const tabla = document.getElementById('tablaCortes');
     const fila = document.createElement('tr');
+    fila.setAttribute("data-id", id);
+
     fila.innerHTML = `
         <td>${tipoMadera}</td>
         <td>${largo}</td>
@@ -52,9 +56,20 @@ function calcularCosto() {
         <td>${cantidad}</td>
         <td>$${precioPorMetro.toFixed(2)}</td>
         <td>$${total.toFixed(2)}</td>
+        <td><button class="btn btn-sm btn-danger" onclick="eliminarCorte(${id})">❌</button></td>
     `;
     tabla.appendChild(fila);
 
+
+    actualizarTotal();
+}
+
+function eliminarCorte(id) {
+    const index = cortes.findIndex(c => c.id === id);
+    if (index !== -1) cortes.splice(index, 1);
+
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    if (fila) fila.remove();
 
     actualizarTotal();
 }
