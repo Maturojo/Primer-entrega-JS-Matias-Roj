@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "tipo": "Pino",
+        "precio": 58351.59
+    },
+
+    {
+        "id": 2,
+        "tipo": "Fibro Fácil",
+        "precio": 30129.47
+    },
+
+    {
+        "id": 3,
+        "tipo": "Melamina",
+        "precio": 56932.69
+    },
+
+    {
+        "id": 4,
+        "tipo": "Chapadur",
+        "precio": 42569.21
+    }
+]
