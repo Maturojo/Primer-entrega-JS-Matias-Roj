@@ -1,5 +1,18 @@
 const cortes = [];
 
+async function cargarMateriales() {
+    const res = await fetch("materiales.json");
+    const materiales = await res.json();
+
+    const select = document.getElementById("Material");
+    select.innerHTML = '<option value="">Seleccione un material...</option>';
+
+    materiales.forEach(m => {
+        select.innerHTML += `<option value="${m.precio}">${m.tipo}</option>`;
+    });
+}
+
+
 function actualizarPrecio() {
     const material = document.getElementById('Material');
     const precio = parseFloat(material.value) || 0;
