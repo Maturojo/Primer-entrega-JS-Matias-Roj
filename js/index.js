@@ -24,7 +24,10 @@ function calcularCosto() {
     const ancho = parseFloat(document.getElementById('ancho').value);
     const cantidad = parseFloat(document.getElementById('cantidad').value);
     const precioPorMetro = parseFloat(document.getElementById('preciometromadera').value);
-    const tipoMadera = document.getElementById('Material').options[document.getElementById('Material').selectedIndex].text;
+    const select = document.getElementById('Material');
+    const tipoMadera = select.options[select.selectedIndex].text;
+
+
 
     const mensajeError = document.getElementById('mensajeError');
     mensajeError.textContent = "";
@@ -57,7 +60,10 @@ function actualizarTotal() {
 }
 
 function resetCortes() {
-    cortes.length = 0; // Vacía el array
-    document.getElementById('listaCortes').innerHTML = ''; // Limpia la lista
-    document.getElementById('costototalcorte').textContent = '0.00'; // Reinicia el total
+    cortes.length = 0; 
+    document.getElementById('listaCortes').innerHTML = ''; 
+    document.getElementById('costototalcorte').textContent = '0.00'; 
 }
+
+document.addEventListener("DOMContentLoaded", cargarMateriales);
+
