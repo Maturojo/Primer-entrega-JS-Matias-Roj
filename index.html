@@ -49,7 +49,19 @@
 
         <div class="container mt-4 p-0">
             <h4>Historial de cortes:</h4>
-            <ul id="listaCortes" class="list-group"></ul>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Largo (cm)</th>
+                    <th>Ancho (cm)</th>
+                    <th>Cantidad</th>
+                    <th>Precio m²</th>
+                    <th>Subtotal</th>
+                </tr>
+                </thead>
+                <tbody id="tablaCortes"></tbody>
+            </table>
             <button id="btnReset" class="btn btn-danger" onclick="resetCortes()">Reiniciar cortes</button>
         </div>
     </div>

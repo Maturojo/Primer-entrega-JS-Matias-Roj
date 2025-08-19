@@ -40,17 +40,22 @@ function calcularCosto() {
     const area = (largo / 100) * (ancho / 100);
     const total = area * precioPorMetro * cantidad;
 
-    // Guardar corte en el array
+    
     cortes.push({ tipoMadera, largo, ancho, cantidad, precioPorMetro, total: total });
 
-    // Mostrar en historial
-    const lista = document.getElementById('listaCortes');
-    const item = document.createElement('li');
-    item.className = 'list-group-item';
-    item.textContent = `${cantidad}x ${tipoMadera} de ${largo}cm x ${ancho}cm - $${total.toFixed(2)}`;
-    lista.appendChild(item);
+    const tabla = document.getElementById('tablaCortes');
+    const fila = document.createElement('tr');
+    fila.innerHTML = `
+        <td>${tipoMadera}</td>
+        <td>${largo}</td>
+        <td>${ancho}</td>
+        <td>${cantidad}</td>
+        <td>$${precioPorMetro.toFixed(2)}</td>
+        <td>$${total.toFixed(2)}</td>
+    `;
+    tabla.appendChild(fila);
 
-    // Calcular el total de todos los cortes
+
     actualizarTotal();
 }
 
@@ -61,7 +66,7 @@ function actualizarTotal() {
 
 function resetCortes() {
     cortes.length = 0; 
-    document.getElementById('listaCortes').innerHTML = ''; 
+    document.getElementById('tablaCortes').innerHTML = ''; 
     document.getElementById('costototalcorte').textContent = '0.00'; 
 }
 
