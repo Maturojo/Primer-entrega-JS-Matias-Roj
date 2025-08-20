@@ -33,7 +33,11 @@ function calcularCosto() {
     mensajeError.textContent = "";
 
     if (isNaN(largo) || isNaN(ancho) || isNaN(cantidad) || isNaN(precioPorMetro)) {
-        mensajeError.textContent = "⚠️ Completá todos los campos correctamente.";
+        Swal.fire({
+            icon: "warning",
+            title: "Campos incompletos",
+            text: "⚠️ Completá todos los campos correctamente."
+        });
         return;
     }
 
@@ -54,8 +58,8 @@ function calcularCosto() {
         <td>${largo}</td>
         <td>${ancho}</td>
         <td>${cantidad}</td>
-        <td>$${precioPorMetro.toFixed(2)}</td>
-        <td>$${total.toFixed(2)}</td>
+        <td>$${formatNumber(precioPorMetro)}</td>
+        <td>$${formatNumber(total)}</td>
         <td><button class="btn btn-sm btn-danger" onclick="eliminarCorte(${id})">❌</button></td>
     `;
     tabla.appendChild(fila);
@@ -76,14 +80,43 @@ function eliminarCorte(id) {
 
 function actualizarTotal() {
     const totalGeneral = cortes.reduce((sum, corte) => sum + corte.total, 0);
-    document.getElementById('costototalcorte').textContent = totalGeneral.toFixed(2);
+    document.getElementById('costototalcorte').textContent = formatNumber(totalGeneral);
 }
 
 function resetCortes() {
+    Swal.fire({
+    title: "¿Estás seguro?",
+    text: "Se eliminarán todos los cortes.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, reiniciar",
+    cancelButtonText: "Cancelar"
+    }).then((result) => {
+    if (result.isConfirmed) {
     cortes.length = 0; 
     document.getElementById('tablaCortes').innerHTML = ''; 
     document.getElementById('costototalcorte').textContent = '0.00'; 
+    
+        Swal.fire({
+            icon: "success",
+            title: "Cortes reiniciados",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        }
+    });
+
 }
+
+function formatNumber(num) {
+    return new Intl.NumberFormat("es-AR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(num);
+}
+
 
 document.addEventListener("DOMContentLoaded", cargarMateriales);
 
