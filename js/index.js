@@ -41,6 +41,56 @@ function calcularCosto() {
         return;
     }
 
+    if (largo <= 0 || ancho <= 0) {
+        Swal.fire({
+            icon: "error",
+            title: "Medidas inválidas",
+            text: "El largo y el ancho deben ser mayores a 0."
+        });
+        return;
+        }
+
+        if (cantidad <= 0) {
+        Swal.fire({
+            icon: "error",
+            title: "Cantidad inválida",
+            text: "La cantidad debe ser mayor a 0."
+        });
+        return;
+        }
+
+        
+        if (largo > 1000 || ancho > 1000) { 
+        Swal.fire({
+            icon: "error",
+            title: "Medidas demasiado grandes",
+            text: "El largo y ancho no pueden superar 1000 cm (10 metros)."
+        });
+        return;
+        }
+
+        if (cantidad > 1000) {
+        Swal.fire({
+            icon: "error",
+            title: "Cantidad excesiva",
+            text: "La cantidad no puede superar las 1000 cortes por material."
+        });
+        return;
+    }
+
+    const acumulado = cortes
+        .filter(c => c.tipoMadera === tipoMadera)
+        .reduce((sum, c) => sum + c.cantidad, 0);
+
+    if (acumulado + cantidad > 1000) {
+        Swal.fire({
+        icon: "error",
+        title: "Cantidad excedida",
+        text: `Ya tenés ${acumulado} cortes de ${tipoMadera}. El máximo total permitido es 1000.`
+        });
+        return;
+    }
+
     const area = (largo / 100) * (ancho / 100);
     const total = area * precioPorMetro * cantidad;
 
@@ -70,7 +120,9 @@ function calcularCosto() {
 
 function eliminarCorte(id) {
     const index = cortes.findIndex(c => c.id === id);
-    if (index !== -1) cortes.splice(index, 1);
+    if (index !== -1) {
+    cortes.splice(index, 1); // elimina ese corte del array
+    }
 
     const fila = document.querySelector(`tr[data-id="${id}"]`);
     if (fila) fila.remove();
