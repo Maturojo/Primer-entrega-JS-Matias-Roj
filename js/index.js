@@ -1,5 +1,74 @@
 const cortes = [];
 
+function crearEstructura() {
+    const app = document.getElementById("app");
+
+    app.innerHTML = `
+        <h1>Cotizador de Cortes</h1>
+        <hr>
+        <h3>Bienvenido al cotizador de cortes</h3>
+
+        <div class="mb-3">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" class="form-control" placeholder="Ingrese su nombre">
+        </div>
+
+        <div class="mb-3">
+        <label for="Material">Material:</label>
+        <select id="Material" class="form-select" onchange="actualizarPrecio()">
+            <option value="">Seleccione un material...</option>
+        </select>
+        </div>
+
+        <form onsubmit="return false;" class="mb-3">
+        <label for="alto">Largo (cm):</label>
+        <input class="form-control" type="number" id="alto" min="1" max="1000"><br>
+
+        <label for="ancho">Ancho (cm):</label>
+        <input class="form-control" type="number" id="ancho" min="1" max="1000"><br>
+
+        <label for="cantidad">Cantidad:</label>
+        <input class="form-control" type="number" id="cantidad" min="1" max="1000"><br>
+
+        <label for="preciometromadera">Precio por m² ($):</label>
+        <input class="form-control" type="number" id="preciometromadera" readonly><br>
+
+        <button type="button" class="btn btn-outline-secondary" onclick="calcularCosto()">CALCULAR</button>
+        <p id="mensajeError" class="text-danger mt-2"></p>
+        </form>
+
+        <div id="Piedepagina" class="mb-3">
+        <h2>Costo total de todos los cortes: $<span id="costototalcorte">0,00</span></h2>
+        </div>
+
+        <h4>Historial de cortes:</h4>
+        <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>Material</th>
+            <th>Largo (cm)</th>
+            <th>Ancho (cm)</th>
+            <th>Cantidad</th>
+            <th>Precio m²</th>
+            <th>Subtotal</th>
+            <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tablaCortes"></tbody>
+        </table>
+        <button id="btnReset" class="btn btn-danger" onclick="resetCortes()">Reiniciar cortes</button>
+        <button id="btnWhatsApp" class="btn btn-danger" onclick="enviarWhatsApp()">Encargar por WhatsApp</button>
+
+    `;
+    }
+
+    
+    document.addEventListener("DOMContentLoaded", () => {
+    crearEstructura();
+    cargarMateriales(); 
+});
+
+
 async function cargarMateriales() {
     const res = await fetch("materiales.json");
     const materiales = await res.json();
@@ -168,6 +237,37 @@ function formatNumber(num) {
         maximumFractionDigits: 2
     }).format(num);
 }
+
+function enviarWhatsApp() {
+    if (cortes.length === 0) {
+        Swal.fire({
+        icon: "warning",
+        title: "Sin cortes",
+        text: "Primero tenés que agregar cortes para enviar."
+        });
+        return;
+    }
+
+    const nombre = document.getElementById("nombre").value || "Cliente";
+
+    
+    let mensaje = `Hola, soy ${nombre} y quiero encargar estos cortes:\n\n`;
+    cortes.forEach(c => {
+        mensaje += `- ${c.cantidad}x ${c.tipoMadera} de ${c.largo}cm x ${c.ancho}cm = $${formatNumber(c.total)}\n`;
+    });
+
+    const totalGeneral = cortes.reduce((sum, c) => sum + c.total, 0);
+    mensaje += `\n💰 Total: $${formatNumber(totalGeneral)}`;
+
+    const telefono = "5492235954195"; 
+
+
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+
+    
+    window.open(url, "_blank");
+    }
+
 
 
 document.addEventListener("DOMContentLoaded", cargarMateriales);

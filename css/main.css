@@ -76,6 +76,23 @@ body {
         }
 
         #btnReset:hover {
-            background-color: #c0392b;
-            color: #fff;
+            background-color: white;
+            color:  #c0392b;
+        }
+
+        #btnWhatsApp {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            background-color: #25D366;
+            border-color: #25D366;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        #btnWhatsApp:hover {
+            background-color: white;
+            color: #25d366 ;
+            border-color: #25D366;
         }
